@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.com/Diogomrol/gocd-s3-artifact-plugin.svg?branch=master)](https://travis-ci.com/Diogomrol/gocd-s3-artifact-plugin)
 # GoCD S3 Artifact Plugin
 
+Allow set endpoint and custom region to use with minio or other s3 service.
+
 The S3 artifact plugin provides a way to publish and fetch artifacts to/from AWS S3.
 
 ## Getting started

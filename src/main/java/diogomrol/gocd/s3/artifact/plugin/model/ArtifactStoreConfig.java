@@ -30,7 +30,7 @@ import java.util.List;
 
 public class ArtifactStoreConfig implements Validatable {
 
-    private static final ImmutableSet<String> OPTIONAL_PROPERTIES = ImmutableSet.of("Region", "AWSAccessKey", "AWSSecretAccessKey");
+    private static final ImmutableSet<String> OPTIONAL_PROPERTIES = ImmutableSet.of("Region", "Endpoint", "AWSAccessKey", "AWSSecretAccessKey");
     private static final ImmutableSet<String> AWS_ACCESS_PROPERTIES = ImmutableSet.of("AWSAccessKey", "AWSSecretAccessKey");
 
     @Expose
@@ -42,6 +42,11 @@ public class ArtifactStoreConfig implements Validatable {
     @SerializedName("Region")
     @FieldMetadata(key = "Region", required = false, secure = false)
     private String region;
+
+    @Expose
+    @SerializedName("Endpoint")
+    @FieldMetadata(key = "Endpoint", required = false, secure = false)
+    private String endpoint;
 
     @Expose
     @SerializedName("AWSAccessKey")
@@ -57,9 +62,10 @@ public class ArtifactStoreConfig implements Validatable {
     public ArtifactStoreConfig() {
     }
 
-    public ArtifactStoreConfig(String s3bucket, String region, String awsaccesskey, String awssecretaccesskey) {
+    public ArtifactStoreConfig(String s3bucket, String region, String endpoint, String awsaccesskey, String awssecretaccesskey) {
         this.s3bucket = s3bucket;
         this.region = region;
+        this.endpoint = endpoint;
         this.awsaccesskey = awsaccesskey;
         this.awssecretaccesskey = awssecretaccesskey;
     }
@@ -69,6 +75,7 @@ public class ArtifactStoreConfig implements Validatable {
     }
 
     public String getRegion () { return region; }
+public String getEndpoint () { return endpoint; }
 
     public String getAwsaccesskey() {
         return awsaccesskey;
@@ -87,6 +94,7 @@ public class ArtifactStoreConfig implements Validatable {
 
         if (s3bucket != null ? !s3bucket.equals(that.s3bucket) : that.s3bucket != null) return false;
         if (region != null ? !region.equals(that.region) : that.region != null) return false;
+        if (endpoint != null ? !endpoint.equals(that.endpoint) : that.endpoint != null) return false;
         if (awsaccesskey != null ? !awsaccesskey.equals(that.awsaccesskey) : that.awsaccesskey != null) return false;
         return awssecretaccesskey != null ? awssecretaccesskey.equals(that.awssecretaccesskey) : that.awssecretaccesskey == null;
     }
@@ -95,6 +103,7 @@ public class ArtifactStoreConfig implements Validatable {
     public int hashCode() {
         int result = s3bucket != null ? s3bucket.hashCode() : 0;
         result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
         result = 31 * result + (awsaccesskey != null ? awsaccesskey.hashCode() : 0);
         result = 31 * result + (awssecretaccesskey != null ? awssecretaccesskey.hashCode() : 0);
         return result;

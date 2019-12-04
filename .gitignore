@@ -18,3 +18,7 @@ src/main/resources-generated/
 /docker-compose.yml.dojo
 /e2e/terraform/kudu_deployment.tfplan
 /ops/
+/.settings/
+/bin/
+/.project
+/.classpath
